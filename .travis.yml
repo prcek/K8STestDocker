@@ -11,8 +11,8 @@ env:
 script:
   - echo $SOMEVAR
   - VER=`git log --pretty=tformat:%h -n 1`
-  - echo $VER
-  - echo $TRAVIS_COMMIT
-  - env
+  - IMAGE=prcek/k8stestdocker:$VER
+  - echo Image $IMAGE
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build .
+  - docker build -t $IMAGE .
+  - docker push $IAMGE
