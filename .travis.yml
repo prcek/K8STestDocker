@@ -10,5 +10,7 @@ env:
 
 script:
   - echo $SOMEVAR
+  - VER=`git log --pretty=tformat:%h -n 1`
+  - echo $VER
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build .
